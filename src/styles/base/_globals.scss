@@ -1,0 +1,75 @@
+@use "../abstracts/variables" as v;
+
+/* Globals */
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+html,
+body {
+  background-color: v.$white;
+}
+
+body {
+  color: v.$black;
+  font-family: v.$main-font;
+  font-size: v.$default-font-size;
+}
+
+/* Custom text selection color */
+::-moz-selection {
+  /* Code for Firefox */
+  color: v.$white;
+  background: v.$primary;
+}
+::selection {
+  color: v.$white;
+  background: v.$primary;
+}
+
+p {
+  color: v.$black;
+  line-height: normal;
+}
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 v.$separation;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.6rem;
+}
+h3 {
+  font-size: 2.2rem;
+}
+h4 {
+  font-size: 1.8rem;
+}
+
+button {
+  cursor: pointer;
+}

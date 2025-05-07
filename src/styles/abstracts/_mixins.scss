@@ -1,0 +1,84 @@
+@use "sass:color";
+@use "variables" as v;
+
+// Media queries sizes
+@mixin phone {
+  @media (min-width: v.$phone) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: v.$tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: v.$desktop) {
+    @content;
+  }
+}
+
+@mixin desktop-xl {
+  @media (min-width: v.$desktop-xl) {
+    @content;
+  }
+}
+
+// Links and buttons
+@mixin link {
+  cursor: pointer;
+  padding: 1.2rem 1.6rem;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  outline: 0;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+@mixin nav-link($hover-color) {
+  @include link;
+
+  & {
+    color: v.$black;
+    text-decoration: none;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &:hover,
+  &.active {
+    background-color: color.adjust($hover-color, $lightness: 65%);
+  }
+}
+
+@mixin button($background-color, $text-color, $icon-color) {
+  @include link;
+
+  &:hover {
+    background-color: color.adjust($background-color, $lightness: -10%);
+  }
+
+  svg {
+    color: $icon-color;
+  }
+
+  & {
+    background-color: $background-color;
+    color: $text-color;
+    border: none;
+  }
+}
+
+// CSS grids
+@mixin grid($columns, $spacing) {
+  display: grid;
+  gap: $spacing;
+  grid-template-columns: repeat($columns, 1fr);
+}
