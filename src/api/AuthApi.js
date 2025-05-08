@@ -1,4 +1,4 @@
-import axiosClient from "../config/axiosClient";
+import axiosClient from "@/config/axiosClient";
 
 export async function loginUser(email, password) {
   const url = `/users?email=${email}&password=${password}`;

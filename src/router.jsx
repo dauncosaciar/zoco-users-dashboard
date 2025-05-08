@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./context/AuthProvider";
-import AuthLayout from "./layouts/AuthLayout";
-import AppLayout from "./layouts/AppLayout";
-import LoginView from "./views/auth/LoginView";
-import DashboardView from "./views/users/DashboardView";
+import { AuthProvider } from "@/context/AuthProvider";
+import AuthLayout from "@/layouts/AuthLayout";
+import AppLayout from "@/layouts/AppLayout";
+import LoginView from "@/views/auth/LoginView";
+import DashboardView from "@/views/users/DashboardView";
 
 export default function Router() {
   return (
