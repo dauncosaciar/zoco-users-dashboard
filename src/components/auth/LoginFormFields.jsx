@@ -13,7 +13,11 @@ export default function LoginFormFields({ register, errors }) {
           type="email"
           placeholder="Tu email"
           {...register("email", {
-            required: "El email es obligatorio."
+            required: "El email es obligatorio.",
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "Formato de email no válido."
+            }
           })}
         />
 
