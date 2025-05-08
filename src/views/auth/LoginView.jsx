@@ -1,9 +1,13 @@
 import { useForm } from "react-hook-form";
+import { LogIn } from "lucide-react";
 import Form from "@/components/form/Form";
 import LoginFormFields from "@/components/auth/LoginFormFields";
-import { LogIn } from "lucide-react";
+import useAuth from "@/hooks/useAuth";
+import { toast } from "sonner";
 
 export default function LoginView() {
+  const { login } = useAuth();
+
   const initialValues = {
     email: "",
     password: ""
@@ -15,8 +19,14 @@ export default function LoginView() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
-  const handleForm = formData => {
-    console.log("formData:", formData);
+  const handleForm = async formData => {
+    const email = formData.email;
+    const password = formData.password;
+    const successfulLogin = await login(email, password);
+
+    if (!successfulLogin) {
+      toast.error("Email o Password incorrectos");
+    }
   };
 
   return (

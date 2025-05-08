@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Logo from "@/components/ui/Logo";
+import Notification from "@/components/ui/Notification";
 
 export default function AuthLayout() {
   return (
@@ -8,6 +9,8 @@ export default function AuthLayout() {
         <Logo />
         <Outlet />
       </div>
+
+      <Notification />
     </div>
   );
 }
