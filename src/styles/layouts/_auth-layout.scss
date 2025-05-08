@@ -1,0 +1,32 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Auth Layout */
+.auth-layout {
+  background: linear-gradient(
+    to right,
+    v.$primary 0%,
+    color.adjust(v.$primary, $lightness: 15%) 100%
+  );
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__frame {
+    background-color: v.$white;
+    width: 90%;
+    min-height: 30rem;
+    border-radius: 2rem;
+    padding: 2rem;
+
+    @include m.tablet {
+      max-width: 75rem;
+    }
+
+    @include m.desktop {
+      padding: 3rem;
+    }
+  }
+}
