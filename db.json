@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Julio",
+      "email": "admin@mail.com",
+      "password": "1234",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Antonio",
+      "email": "user@mail.com",
+      "password": "1234",
+      "role": "user"
+    }
+  ],
+  "studies": [{ "id": 1, "userId": 2, "field": "Ciencia de Datos" }],
+  "addresses": [{ "id": 1, "userId": 2, "location": "San Miguel de Tucumán" }]
+}
