@@ -1,0 +1,57 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Form */
+.form {
+  margin-top: 3rem;
+
+  &__field {
+    margin-bottom: 2rem;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+
+  &__input {
+    background-color: v.$white;
+    border: 1px solid v.$grey;
+    border-radius: 0.8rem;
+    padding: 1rem 1.6rem;
+    font-weight: 400;
+    display: block;
+    width: 100%;
+    outline: 0;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &:focus {
+      box-shadow: 0 0 0 0.4rem color.adjust(v.$secondary, $lightness: 20%);
+      border: 1px solid v.$secondary;
+    }
+
+    &--error {
+      border: 1px solid v.$red;
+
+      &:focus {
+        box-shadow: 0 0 0 0.4rem color.adjust(v.$red, $lightness: 20%);
+        border: 1px solid v.$red;
+      }
+    }
+  }
+
+  textarea {
+    min-height: 15rem;
+  }
+
+  &__submit {
+    @include m.button(v.$primary, v.$white, v.$secondary);
+
+    & {
+      justify-content: center;
+    }
+  }
+}
