@@ -1,3 +1,5 @@
+import { createElement } from "react";
+
 export default function Form({
   handleSubmit,
   fnSubmit,
@@ -11,7 +13,7 @@ export default function Form({
 
   return (
     <form className="form" onSubmit={handleSubmit(fnSubmit)} noValidate>
-      <InnerFormFields register={register} errors={errors} />
+      {createElement(InnerFormFields, { register, errors })}
 
       <button className="form__submit" type="submit">
         <Icon /> {submitText}
