@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,9 +21,13 @@ const AuthProvider = ({ children }) => {
       setUser(JSON.parse(storedUser));
       setRole(JSON.parse(storedRole));
     }
+
+    setAuthLoading(false);
   }, []);
 
   const login = async (email, password) => {
+    setAuthLoading(true);
+
     try {
       const user = await loginUser(email, password);
 
@@ -44,6 +49,8 @@ const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("Login error:", error);
       return false;
+    } finally {
+      setAuthLoading(false);
     }
   };
 
@@ -66,6 +73,7 @@ const AuthProvider = ({ children }) => {
         user,
         role,
         isAuthenticated,
+        authLoading,
         login,
         logout
       }}

@@ -1,8 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import Header from "@/components/ui/Header";
+import useAuth from "@/hooks/useAuth";
 
 export default function AppLayout() {
-  return (
+  const { authLoading, isAuthenticated } = useAuth();
+
+  if (authLoading) return "Cargando...";
+
+  return isAuthenticated ? (
     <div className="app-layout">
       <Header />
 
@@ -12,5 +17,7 @@ export default function AppLayout() {
         </main>
       </div>
     </div>
+  ) : (
+    <Navigate to="/" />
   );
 }
