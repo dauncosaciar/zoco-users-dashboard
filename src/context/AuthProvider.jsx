@@ -31,24 +31,24 @@ const AuthProvider = ({ children }) => {
     try {
       const user = await loginUser(email, password);
 
-      if (!user) return false;
+      if (!user) {
+        return { success: false, error: "Credenciales incorrectas" };
+      }
 
-      const { password: pwd, ...userWithoutPassword } = user;
       const token = "token__" + Date.now();
 
       setToken(token);
-      setUser(userWithoutPassword);
-      setRole(userWithoutPassword.role);
+      setUser(user);
+      setRole(user.role);
 
       sessionStorage.setItem("token", JSON.stringify(token));
-      sessionStorage.setItem("user", JSON.stringify(userWithoutPassword));
-      sessionStorage.setItem("role", JSON.stringify(userWithoutPassword.role));
+      sessionStorage.setItem("user", JSON.stringify(user));
+      sessionStorage.setItem("role", JSON.stringify(user.role));
 
       navigate("/dashboard");
-      return true;
+      return { success: true };
     } catch (error) {
-      console.error("Login error:", error);
-      return false;
+      return { success: false, error: error.message };
     } finally {
       setAuthLoading(false);
     }

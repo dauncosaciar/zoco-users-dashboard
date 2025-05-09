@@ -22,10 +22,10 @@ export default function LoginView() {
   const handleForm = async formData => {
     const email = formData.email;
     const password = formData.password;
-    const successfulLogin = await login(email, password);
+    const result = await login(email, password);
 
-    if (!successfulLogin) {
-      toast.error("Email o Password incorrectos");
+    if (!result.success) {
+      toast.error(result.error);
     }
   };
 
