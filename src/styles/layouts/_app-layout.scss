@@ -1,0 +1,15 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* App Layout */
+.app-layout {
+  &__frame {
+    background-color: v.$light-grey;
+    min-height: 100vh;
+  }
+
+  &__content {
+    padding-top: 5rem;
+  }
+}

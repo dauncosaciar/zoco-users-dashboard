@@ -1,0 +1,33 @@
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Header */
+.header {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+
+    @include m.tablet {
+      padding: 2rem 1rem;
+    }
+
+    @include m.tablet {
+      padding: 2rem;
+    }
+
+    .logo {
+      width: 17rem;
+
+      @include m.tablet {
+        width: 20rem;
+      }
+    }
+  }
+
+  &__navigation-button {
+    @include m.button(v.$primary, v.$white, v.$secondary);
+  }
+}

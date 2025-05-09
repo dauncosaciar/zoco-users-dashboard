@@ -58,15 +58,17 @@
   }
 }
 
-@mixin button($background-color, $text-color, $icon-color) {
+@mixin button($background-color, $text-color, $icon-color: null) {
   @include link;
 
   &:hover {
     background-color: color.adjust($background-color, $lightness: -10%);
   }
 
-  svg {
-    color: $icon-color;
+  @if $icon-color != null {
+    svg {
+      color: $icon-color;
+    }
   }
 
   & {
