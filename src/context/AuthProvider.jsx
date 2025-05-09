@@ -49,7 +49,15 @@ const AuthProvider = ({ children }) => {
 
   const isAuthenticated = !!token;
 
-  const logout = () => {};
+  const logout = () => {
+    setToken(null);
+    setUser(null);
+    setRole(null);
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("role");
+    navigate("/");
+  };
 
   return (
     <AuthContext.Provider
