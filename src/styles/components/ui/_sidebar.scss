@@ -1,0 +1,27 @@
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 25rem;
+  height: 100%;
+  background-color: #333;
+  color: v.$white;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+
+  @include m.desktop {
+    transform: translateX(0);
+  }
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  &__navigation {
+    padding-top: 5rem;
+  }
+}

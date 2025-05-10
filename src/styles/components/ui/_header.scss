@@ -27,7 +27,15 @@
     }
   }
 
-  &__navigation-button {
+  &__options-logout {
     @include m.button(v.$primary, v.$white, v.$secondary);
+  }
+
+  &__options-hamburger {
+    display: inline-block;
+
+    @include m.desktop {
+      display: none;
+    }
   }
 }

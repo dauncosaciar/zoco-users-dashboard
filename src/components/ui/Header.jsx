@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { LogOut } from "lucide-react";
+import { AlignRight, LogOut } from "lucide-react";
 import Logo from "./Logo";
 import useAuth from "@/hooks/useAuth";
 
-export default function Header() {
+export default function Header({ toggleSidebar }) {
   const { logout } = useAuth();
 
   const handleLogout = () => {
@@ -17,13 +17,21 @@ export default function Header() {
           <Logo />
         </Link>
 
-        <div className="header__navigation">
+        <div className="header__options">
           <button
-            className="header__navigation-button"
+            className="header__options-logout"
             type="button"
             onClick={handleLogout}
           >
             <LogOut /> Cerrar Sesión
+          </button>
+
+          <button
+            className="header__options-hamburger"
+            type="button"
+            onClick={toggleSidebar}
+          >
+            <AlignRight />
           </button>
         </div>
       </div>

@@ -4,9 +4,13 @@
 
 /* App Layout */
 .app-layout {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+
   &__frame {
     background-color: v.$light-grey;
-    min-height: 100vh;
+    flex-grow: 1;
   }
 
   &__content {
