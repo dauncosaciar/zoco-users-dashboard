@@ -30,7 +30,7 @@ export default function AppLayout() {
 
       <div className="app-layout__frame">
         <Sidebar
-          isOpen={isSidebarOpen}
+          isSidebarOpen={isSidebarOpen}
           closeSidebar={closeSidebar}
           sidebarRef={sidebarRef}
         />
