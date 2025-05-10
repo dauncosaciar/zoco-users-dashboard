@@ -13,13 +13,9 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedToken = sessionStorage.getItem("token");
-    const storedUser = sessionStorage.getItem("user");
-    const storedRole = sessionStorage.getItem("role");
 
-    if (storedToken && storedUser) {
+    if (storedToken) {
       setToken(JSON.parse(storedToken));
-      setUser(JSON.parse(storedUser));
-      setRole(JSON.parse(storedRole));
     }
 
     setAuthLoading(false);
@@ -35,15 +31,21 @@ const AuthProvider = ({ children }) => {
         return { success: false, error: "Credenciales incorrectas" };
       }
 
-      const token = "token__" + Date.now();
+      const token = {
+        tokenId: "token__" + Date.now(),
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role
+        }
+      };
 
       setToken(token);
       setUser(user);
       setRole(user.role);
 
       sessionStorage.setItem("token", JSON.stringify(token));
-      sessionStorage.setItem("user", JSON.stringify(user));
-      sessionStorage.setItem("role", JSON.stringify(user.role));
 
       navigate("/dashboard");
       return { success: true };
@@ -61,8 +63,6 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     setRole(null);
     sessionStorage.removeItem("token");
-    sessionStorage.removeItem("user");
-    sessionStorage.removeItem("role");
     navigate("/");
   };
 
