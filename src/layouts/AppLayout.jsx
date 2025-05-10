@@ -8,7 +8,11 @@ import useSidebarControl from "@/hooks/useSidebarControl";
 export default function AppLayout() {
   const { authLoading, isAuthenticated } = useAuth();
   const sidebarRef = useRef(null);
-  const { isSidebarOpen, setIsSidebarOpen } = useSidebarControl(sidebarRef);
+  const toggleRef = useRef(null);
+  const { isSidebarOpen, setIsSidebarOpen } = useSidebarControl(
+    sidebarRef,
+    toggleRef
+  );
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -22,7 +26,7 @@ export default function AppLayout() {
 
   return isAuthenticated ? (
     <div className="app-layout">
-      <Header toggleSidebar={toggleSidebar} />
+      <Header toggleSidebar={toggleSidebar} toggleRef={toggleRef} />
 
       <div className="app-layout__frame">
         <Sidebar

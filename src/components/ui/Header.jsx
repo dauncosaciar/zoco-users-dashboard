@@ -3,7 +3,7 @@ import { AlignRight, LogOut } from "lucide-react";
 import Logo from "./Logo";
 import useAuth from "@/hooks/useAuth";
 
-export default function Header({ toggleSidebar }) {
+export default function Header({ toggleSidebar, toggleRef }) {
   const { logout } = useAuth();
 
   const handleLogout = () => {
@@ -27,6 +27,7 @@ export default function Header({ toggleSidebar }) {
           </button>
 
           <button
+            ref={toggleRef}
             className="header__options-hamburger"
             type="button"
             onClick={toggleSidebar}

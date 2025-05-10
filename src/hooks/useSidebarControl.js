@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import { DESKTOP } from "@/utils/constants";
 
-const useSidebarControl = sidebarRef => {
+const useSidebarControl = (sidebarRef, toggleRef) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  console.log("isSidebarOpen:", isSidebarOpen);
 
   // Close the sidebar if resized to desktop
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) {
+      if (window.innerWidth >= DESKTOP) {
         setIsSidebarOpen(false);
       }
     };
@@ -28,14 +31,15 @@ const useSidebarControl = sidebarRef => {
       if (
         sidebarRef.current &&
         !sidebarRef.current.contains(e.target) &&
-        window.innerWidth < 1024
+        (!toggleRef?.current || !toggleRef.current.contains(e.target)) &&
+        window.innerWidth < DESKTOP
       ) {
         setIsSidebarOpen(false);
       }
     };
 
     const handleEscape = e => {
-      if (e.key === "Escape" && window.innerWidth < 1024) {
+      if (e.key === "Escape" && window.innerWidth < DESKTOP) {
         setIsSidebarOpen(false);
       }
     };
@@ -47,7 +51,7 @@ const useSidebarControl = sidebarRef => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [isSidebarOpen, sidebarRef]);
+  }, [isSidebarOpen, sidebarRef, toggleRef]);
 
   return { isSidebarOpen, setIsSidebarOpen };
 };
