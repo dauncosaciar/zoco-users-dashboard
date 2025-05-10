@@ -8,12 +8,15 @@
   left: 0;
   width: 25rem;
   height: 100%;
-  background-color: #333;
+  background-color: v.$white;
   color: v.$white;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
+  padding: 1rem;
 
   @include m.desktop {
+    position: relative;
+    width: 100%;
     transform: translateX(0);
   }
 
@@ -21,7 +24,29 @@
     transform: translateX(0);
   }
 
+  &__close-button {
+    @include m.nav-link(v.$primary);
+
+    & {
+      width: auto;
+    }
+  }
+
   &__navigation {
-    padding-top: 5rem;
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__navigation-link {
+    @include m.nav-link(v.$primary);
+  }
+
+  &__logout {
+    margin-top: 2rem;
+  }
+
+  &__logout-button {
+    @include m.button(v.$primary, v.$white, v.$secondary);
   }
 }

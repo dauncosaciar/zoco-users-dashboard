@@ -30,6 +30,8 @@
 @mixin link {
   cursor: pointer;
   padding: 1.2rem 1.6rem;
+  border: none;
+  background-color: transparent;
   border-radius: 1.2rem;
   display: flex;
   align-items: center;

@@ -27,6 +27,10 @@
     }
   }
 
+  &__options-hamburger {
+    @include m.nav-link(v.$primary);
+  }
+
   &__options-logout {
     @include m.button(v.$primary, v.$white, v.$secondary);
   }

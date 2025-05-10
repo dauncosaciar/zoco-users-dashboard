@@ -11,6 +11,16 @@
   &__frame {
     background-color: v.$light-grey;
     flex-grow: 1;
+
+    @include m.desktop {
+      display: grid;
+      grid-template-columns: 2fr 6fr;
+      gap: 1rem;
+    }
+
+    @include m.desktop-xl {
+      grid-template-columns: 1fr 5fr;
+    }
   }
 
   &__content {

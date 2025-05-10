@@ -1,4 +1,4 @@
-import { LogOut } from "lucide-react";
+import { CircleUser, LogOut, Users, X } from "lucide-react";
 import useMobile from "@/hooks/useMobile";
 
 export default function Sidebar({ isOpen, closeSidebar, sidebarRef }) {
@@ -6,12 +6,20 @@ export default function Sidebar({ isOpen, closeSidebar, sidebarRef }) {
 
   return (
     <div ref={sidebarRef} className={`sidebar${isOpen ? " open" : ""}`}>
+      {isMobile && (
+        <div className="sidebar__close">
+          <button className="sidebar__close-button" type="button">
+            <X />
+          </button>
+        </div>
+      )}
+
       <nav className="sidebar__navigation">
         <a href="#" className="sidebar__navigation-link" onClick={closeSidebar}>
-          Usuarios
+          <Users /> <span>Usuarios</span>
         </a>
         <a href="#" className="sidebar__navigation-link" onClick={closeSidebar}>
-          Mi Perfil
+          <CircleUser /> <span>Mi Perfil</span>
         </a>
       </nav>
 
