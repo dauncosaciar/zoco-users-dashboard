@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { AlignRight, LogOut } from "lucide-react";
 import Logo from "./Logo";
 import useAuth from "@/hooks/useAuth";
+import useMobile from "@/hooks/useMobile";
 
 export default function Header({ toggleSidebar, toggleRef }) {
   const { logout } = useAuth();
+  const { isMobile } = useMobile();
 
   const handleLogout = () => {
     logout();
@@ -18,22 +20,24 @@ export default function Header({ toggleSidebar, toggleRef }) {
         </Link>
 
         <div className="header__options">
-          <button
-            className="header__options-logout"
-            type="button"
-            onClick={handleLogout}
-          >
-            <LogOut /> Cerrar Sesión
-          </button>
-
-          <button
-            ref={toggleRef}
-            className="header__options-hamburger"
-            type="button"
-            onClick={toggleSidebar}
-          >
-            <AlignRight />
-          </button>
+          {isMobile ? (
+            <button
+              ref={toggleRef}
+              className="header__options-hamburger"
+              type="button"
+              onClick={toggleSidebar}
+            >
+              <AlignRight />
+            </button>
+          ) : (
+            <button
+              className="header__options-logout"
+              type="button"
+              onClick={handleLogout}
+            >
+              <LogOut /> Cerrar Sesión
+            </button>
+          )}
         </div>
       </div>
     </header>

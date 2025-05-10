@@ -1,6 +1,9 @@
 import { LogOut } from "lucide-react";
+import useMobile from "@/hooks/useMobile";
 
 export default function Sidebar({ isOpen, closeSidebar, sidebarRef }) {
+  const { isMobile } = useMobile();
+
   return (
     <div ref={sidebarRef} className={`sidebar${isOpen ? " open" : ""}`}>
       <nav className="sidebar__navigation">
@@ -12,11 +15,13 @@ export default function Sidebar({ isOpen, closeSidebar, sidebarRef }) {
         </a>
       </nav>
 
-      <div className="sidebar__logout">
-        <button className="sidebar__logout-button" type="button">
-          <LogOut /> Cerrar Sesión
-        </button>
-      </div>
+      {isMobile && (
+        <div className="sidebar__logout">
+          <button className="sidebar__logout-button" type="button">
+            <LogOut /> Cerrar Sesión
+          </button>
+        </div>
+      )}
     </div>
   );
 }

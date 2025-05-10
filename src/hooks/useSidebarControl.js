@@ -4,8 +4,6 @@ import { DESKTOP } from "@/utils/constants";
 const useSidebarControl = (sidebarRef, toggleRef) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  console.log("isSidebarOpen:", isSidebarOpen);
-
   // Close the sidebar if resized to desktop
   useEffect(() => {
     const handleResize = () => {
