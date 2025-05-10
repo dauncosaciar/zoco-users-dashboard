@@ -34,6 +34,10 @@ export default function Sidebar({ isSidebarOpen, closeSidebar, sidebarRef }) {
           </button>
         </div>
       )}
+
+      {isSidebarOpen && isMobile && (
+        <div className="sidebar__overlay" onClick={closeSidebar}></div>
+      )}
     </div>
   );
 }

@@ -2,8 +2,10 @@ import { useRef } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import Header from "@/components/ui/Header";
 import Sidebar from "@/components/ui/Sidebar";
+import Overlay from "@/components/ui/Overlay";
 import useAuth from "@/hooks/useAuth";
 import useSidebarControl from "@/hooks/useSidebarControl";
+import useMobile from "@/hooks/useMobile";
 
 export default function AppLayout() {
   const { authLoading, isAuthenticated } = useAuth();
@@ -13,6 +15,7 @@ export default function AppLayout() {
     sidebarRef,
     toggleRef
   );
+  const { isMobile } = useMobile();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -26,7 +29,11 @@ export default function AppLayout() {
 
   return isAuthenticated ? (
     <div className="app-layout">
-      <Header toggleSidebar={toggleSidebar} toggleRef={toggleRef} />
+      <Header
+        toggleSidebar={toggleSidebar}
+        toggleRef={toggleRef}
+        isMobile={isMobile}
+      />
 
       <div className="app-layout__frame">
         <Sidebar
@@ -34,6 +41,8 @@ export default function AppLayout() {
           closeSidebar={closeSidebar}
           sidebarRef={sidebarRef}
         />
+
+        {isSidebarOpen && isMobile && <Overlay closeSidebar={closeSidebar} />}
 
         <main className="app-layout__content container">
           <Outlet />
