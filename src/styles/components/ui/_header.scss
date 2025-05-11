@@ -3,6 +3,16 @@
 
 /* Header */
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: v.$white;
+
+  @include m.desktop {
+    z-index: 30;
+  }
+
   &__content {
     display: flex;
     justify-content: space-between;
