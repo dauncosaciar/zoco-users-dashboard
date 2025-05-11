@@ -1,9 +1,14 @@
-import { CircleUser, LogOut, Users, X } from "lucide-react";
-import useMobile from "@/hooks/useMobile";
+import { Link, useLocation } from "react-router-dom";
+import { CircleUser, FolderDot, LogOut, Users, X } from "lucide-react";
 import Welcome from "./Welcome";
+import useAuth from "@/hooks/useAuth";
+import useMobile from "@/hooks/useMobile";
+import { ADMIN } from "@/utils/constants";
 
 export default function Sidebar({ isSidebarOpen, closeSidebar, sidebarRef }) {
+  const { role } = useAuth();
   const { isMobile } = useMobile();
+  const location = useLocation();
 
   return (
     <div ref={sidebarRef} className={`sidebar${isSidebarOpen ? " open" : ""}`}>
@@ -22,12 +27,38 @@ export default function Sidebar({ isSidebarOpen, closeSidebar, sidebarRef }) {
       <Welcome />
 
       <nav className="sidebar__navigation">
-        <a href="#" className="sidebar__navigation-link" onClick={closeSidebar}>
-          <Users /> <span>Usuarios</span>
-        </a>
-        <a href="#" className="sidebar__navigation-link" onClick={closeSidebar}>
-          <CircleUser /> <span>Mi Perfil</span>
-        </a>
+        {role === ADMIN ? (
+          <>
+            <Link
+              to="/dashboard"
+              className={`sidebar__navigation-link${
+                location.pathname === "/dashboard" ? " active" : ""
+              }`}
+              onClick={closeSidebar}
+            >
+              <Users /> <span>Usuarios</span>
+            </Link>
+            <Link
+              to="/dashboard/profile"
+              className={`sidebar__navigation-link${
+                location.pathname === "/dashboard/profile" ? " active" : ""
+              }`}
+              onClick={closeSidebar}
+            >
+              <CircleUser /> <span>Mi Perfil</span>
+            </Link>
+          </>
+        ) : (
+          <Link
+            to="/dashboard"
+            className={`sidebar__navigation-link${
+              location.pathname === "/dashboard" ? " active" : ""
+            }`}
+            onClick={closeSidebar}
+          >
+            <FolderDot /> <span>Mi Información</span>
+          </Link>
+        )}
       </nav>
 
       {isMobile && (
@@ -36,10 +67,6 @@ export default function Sidebar({ isSidebarOpen, closeSidebar, sidebarRef }) {
             <LogOut /> Cerrar Sesión
           </button>
         </div>
-      )}
-
-      {isSidebarOpen && isMobile && (
-        <div className="sidebar__overlay" onClick={closeSidebar}></div>
       )}
     </div>
   );
