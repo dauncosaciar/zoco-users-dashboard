@@ -1,5 +1,6 @@
 import { CircleUser, LogOut, Users, X } from "lucide-react";
 import useMobile from "@/hooks/useMobile";
+import Welcome from "./Welcome";
 
 export default function Sidebar({ isSidebarOpen, closeSidebar, sidebarRef }) {
   const { isMobile } = useMobile();
@@ -17,6 +18,8 @@ export default function Sidebar({ isSidebarOpen, closeSidebar, sidebarRef }) {
           </button>
         </div>
       )}
+
+      <Welcome />
 
       <nav className="sidebar__navigation">
         <a href="#" className="sidebar__navigation-link" onClick={closeSidebar}>

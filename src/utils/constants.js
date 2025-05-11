@@ -1,4 +1,8 @@
 // Screens sizes
 const DESKTOP = 1024;
 
-export { DESKTOP };
+// Roles
+const ADMIN = "admin";
+const USER = "user";
+
+export { DESKTOP, ADMIN, USER };

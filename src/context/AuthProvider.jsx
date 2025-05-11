@@ -15,7 +15,10 @@ const AuthProvider = ({ children }) => {
     const storedToken = sessionStorage.getItem("token");
 
     if (storedToken) {
-      setToken(JSON.parse(storedToken));
+      const parsedToken = JSON.parse(storedToken);
+      setToken(parsedToken);
+      setUser(parsedToken.user);
+      setRole(parsedToken.user.role);
     }
 
     setAuthLoading(false);
