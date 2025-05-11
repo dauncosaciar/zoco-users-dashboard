@@ -1,0 +1,68 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Users List */
+.users-list {
+  &__new {
+    display: flex;
+    justify-content: center;
+
+    @include m.tablet {
+      justify-content: flex-start;
+    }
+  }
+
+  &__new-button {
+    @include m.button(v.$primary, v.$white, v.$secondary);
+
+    & {
+      width: auto;
+    }
+  }
+
+  &__content {
+    background-color: v.$white;
+    margin-top: 4rem;
+    padding: 2rem 1rem;
+    border-radius: 1.2rem;
+    box-shadow: 0px 10px 15px -3px color.adjust(v.$light-grey, $lightness: -5%);
+
+    @include m.tablet {
+      padding: 2rem;
+    }
+
+    @include m.desktop-xl {
+      padding: 3rem;
+    }
+  }
+
+  &__responsive-frame {
+    overflow-x: auto;
+  }
+
+  &__table {
+    @include m.table;
+  }
+
+  &__table-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+
+    &-see,
+    &-delete {
+      @include m.nav-link(v.$primary);
+
+      & {
+        padding: 0.5rem;
+        width: auto;
+      }
+    }
+
+    &-delete {
+      color: v.$red;
+    }
+  }
+}

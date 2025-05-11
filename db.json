@@ -3,18 +3,38 @@
     {
       "id": 1,
       "name": "Julio",
+      "lastName": "César",
       "email": "admin@mail.com",
+      "phone": 3810001122,
       "password": "1234",
       "role": "admin"
     },
     {
       "id": 2,
-      "name": "Antonio",
+      "name": "Marco",
+      "lastName": "Antonio",
       "email": "user@mail.com",
+      "phone": 3810003344,
       "password": "1234",
       "role": "user"
     }
   ],
-  "studies": [{ "id": 1, "userId": 2, "field": "Ciencia de Datos" }],
-  "addresses": [{ "id": 1, "userId": 2, "location": "San Miguel de Tucumán" }]
+  "studies": [
+    { "id": 1, "userId": 1, "field": "Ciencia de Datos", "institution": "UTN" },
+    { "id": 2, "userId": 2, "field": "Diseñador Web", "institution": "UTN" }
+  ],
+  "addresses": [
+    {
+      "id": 1,
+      "userId": 1,
+      "city": "San Miguel de Tucumán",
+      "country": "Argentina"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "city": "Catamarca",
+      "country": "Argentina"
+    }
+  ]
 }

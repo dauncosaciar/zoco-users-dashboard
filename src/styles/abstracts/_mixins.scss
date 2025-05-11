@@ -80,6 +80,41 @@
   }
 }
 
+// Headings and texts
+@mixin heading-with-border($text-color, $border-color) {
+  border-bottom: 2px solid $border-color;
+  color: $text-color;
+  padding-bottom: 2rem;
+  font-weight: 700;
+  width: 100%;
+
+  span {
+    color: v.$primary;
+  }
+}
+
+@mixin intro-text {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 5rem;
+}
+
+// Tables
+@mixin table {
+  text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1px solid v.$grey;
+  }
+
+  th,
+  td {
+    padding: 1rem;
+  }
+}
+
 // CSS grids
 @mixin grid($columns, $spacing) {
   display: grid;
