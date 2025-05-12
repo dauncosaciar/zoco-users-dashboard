@@ -20,19 +20,26 @@
     }
   ],
   "studies": [
-    { "id": 1, "userId": 1, "field": "Ciencia de Datos", "institution": "UTN" },
-    { "id": 2, "userId": 2, "field": "Diseñador Web", "institution": "UTN" }
+    {
+      "id": 1,
+      "userId": 1,
+      "degree": "Ciencia de Datos",
+      "institution": "UTN"
+    },
+    { "id": 2, "userId": 2, "degree": "Diseñador Web", "institution": "UTN" }
   ],
   "addresses": [
     {
       "id": 1,
       "userId": 1,
+      "street": "4 de Julio 40",
       "city": "San Miguel de Tucumán",
       "country": "Argentina"
     },
     {
       "id": 2,
       "userId": 2,
+      "street": "México 456",
       "city": "Catamarca",
       "country": "Argentina"
     }

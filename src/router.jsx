@@ -4,7 +4,8 @@ import AuthLayout from "@/layouts/AuthLayout";
 import AppLayout from "@/layouts/AppLayout";
 import LoginView from "@/views/auth/LoginView";
 import DashboardView from "@/views/users/DashboardView";
-import ProfileView from "@/views/users/ProfileView";
+import AdminProfileView from "@/views/users/AdminProfileView";
+import UserDetailsView from "@/views/users/UserDetailsView";
 
 export default function Router() {
   return (
@@ -17,7 +18,8 @@ export default function Router() {
 
           <Route path="/dashboard" element={<AppLayout />}>
             <Route index element={<DashboardView />} />
-            <Route path="profile" element={<ProfileView />} />
+            <Route path="profile" element={<AdminProfileView />} />
+            <Route path="user-details" element={<UserDetailsView />} />
           </Route>
         </Routes>
       </AuthProvider>

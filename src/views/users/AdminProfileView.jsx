@@ -1,18 +1,16 @@
 import { Navigate } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
 import { ADMIN } from "@/utils/constants";
+import ProfileInformation from "@/components/users/ProfileInformation";
 
-export default function ProfileView() {
+export default function AdminProfileView() {
   const { user } = useAuth();
 
   if (user?.role !== ADMIN) return <Navigate to="/dashboard" />;
 
   return (
-    <div>
-      <h2>Mi Perfil</h2>
-      <p>Nombre: {user?.name}</p>
-      <p>Email: {user?.email}</p>
-      <p>Rol: {user?.role}</p>
+    <div className="profile-view">
+      <ProfileInformation />
     </div>
   );
 }
