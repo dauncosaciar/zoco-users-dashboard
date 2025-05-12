@@ -1,12 +1,19 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
-import { getAllUsersExceptLogged, getUserById } from "@/api/UsersApi";
+import {
+  getAddressesByUserId,
+  getAllUsersExceptLogged,
+  getStudiesByUserId,
+  getUserById
+} from "@/api/UsersApi";
 
 const UsersContext = createContext();
 
 const UsersProvider = ({ children }) => {
   const { token } = useAuth();
   const [users, setUsers] = useState([]);
+  const [addresses, setAddresses] = useState([]);
+  const [studies, setStudies] = useState([]);
   const [usersLoading, setUsersLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState({});
   const [selectedUserLoading, setSelectedUserLoading] = useState(false);
@@ -40,11 +47,21 @@ const UsersProvider = ({ children }) => {
   const fetchUserById = useCallback(async userId => {
     try {
       setSelectedUserLoading(true);
-      const user = await getUserById(userId);
+
+      const [user, userAddresses, userStudies] = await Promise.all([
+        getUserById(userId),
+        getAddressesByUserId(userId),
+        getStudiesByUserId(userId)
+      ]);
+
       setSelectedUser(user);
+      setAddresses(userAddresses);
+      setStudies(userStudies);
     } catch (error) {
       console.error(error.message);
       setSelectedUser({});
+      setAddresses([]);
+      setStudies([]);
     } finally {
       setSelectedUserLoading(false);
     }
@@ -52,6 +69,8 @@ const UsersProvider = ({ children }) => {
 
   const resetSelectedUser = useCallback(() => {
     setSelectedUser({});
+    setAddresses([]);
+    setStudies([]);
   }, []);
 
   const clearUsersData = () => {
@@ -66,6 +85,8 @@ const UsersProvider = ({ children }) => {
         usersLoading,
         selectedUser,
         selectedUserLoading,
+        addresses,
+        studies,
         fetchUserById,
         resetSelectedUser,
         clearUsersData

@@ -10,7 +10,9 @@ export default function ProfileInformation({ userId = null }) {
     selectedUser,
     selectedUserLoading,
     fetchUserById,
-    resetSelectedUser
+    resetSelectedUser,
+    addresses,
+    studies
   } = useUsers();
 
   const targetUserId = userId || loggedUser.id;
@@ -86,25 +88,43 @@ export default function ProfileInformation({ userId = null }) {
                 </thead>
 
                 <tbody className="profile-information__table-tbody">
-                  <tr className="profile-information__table-tr">
-                    <td className="profile-information__table-td">
-                      Italia 123
-                    </td>
-                    <td className="profile-information__table-td">
-                      SM Tucumán
-                    </td>
-                    <td className="profile-information__table-td">Argentina</td>
-                    <td className="profile-information__table-td">
-                      <div className="profile-information__table-actions">
-                        <button
-                          type="button"
-                          className="profile-information__table-actions-edit"
-                        >
-                          <Pencil />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                  {addresses.length !== 0 ? (
+                    addresses.map(address => (
+                      <tr
+                        key={address.id}
+                        className="profile-information__table-tr"
+                      >
+                        <td className="profile-information__table-td">
+                          {address.street}
+                        </td>
+                        <td className="profile-information__table-td">
+                          {address.city}
+                        </td>
+                        <td className="profile-information__table-td">
+                          {address.country}
+                        </td>
+                        <td className="profile-information__table-td">
+                          <div className="profile-information__table-actions">
+                            <button
+                              type="button"
+                              className="profile-information__table-actions-edit"
+                            >
+                              <Pencil />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr className="profile-information__table-tr">
+                      <td
+                        className="profile-information__table-td--center"
+                        colSpan={4}
+                      >
+                        No hay Direcciones cargadas
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -133,22 +153,40 @@ export default function ProfileInformation({ userId = null }) {
                 </thead>
 
                 <tbody className="profile-information__table-tbody">
-                  <tr className="profile-information__table-tr">
-                    <td className="profile-information__table-td">
-                      Ciencia de Datos
-                    </td>
-                    <td className="profile-information__table-td">UTN</td>
-                    <td className="profile-information__table-td">
-                      <div className="profile-information__table-actions">
-                        <button
-                          type="button"
-                          className="profile-information__table-actions-edit"
-                        >
-                          <Pencil />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                  {studies.length !== 0 ? (
+                    studies.map(study => (
+                      <tr
+                        key={study.id}
+                        className="profile-information__table-tr"
+                      >
+                        <td className="profile-information__table-td">
+                          {study.degree}
+                        </td>
+                        <td className="profile-information__table-td">
+                          {study.institution}
+                        </td>
+                        <td className="profile-information__table-td">
+                          <div className="profile-information__table-actions">
+                            <button
+                              type="button"
+                              className="profile-information__table-actions-edit"
+                            >
+                              <Pencil />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr className="profile-information__table-tr">
+                      <td
+                        className="profile-information__table-td--center"
+                        colSpan={3}
+                      >
+                        No hay Estudios cargados
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>

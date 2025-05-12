@@ -41,3 +41,31 @@ export const getUserById = async userId => {
     }
   }
 };
+
+export const getAddressesByUserId = async userId => {
+  try {
+    const url = `/addresses?userId=${userId}`;
+    const { data: addresses } = await axiosClient.get(url);
+    return addresses;
+  } catch (error) {
+    if (error.response) {
+      throw new Error("Error al obtener las direcciones del usuario.");
+    } else {
+      throw new Error(error.message);
+    }
+  }
+};
+
+export const getStudiesByUserId = async userId => {
+  try {
+    const url = `/studies?userId=${userId}`;
+    const { data: studies } = await axiosClient.get(url);
+    return studies;
+  } catch (error) {
+    throw new Error(
+      error.response
+        ? "Error al obtener las direcciones del usuario."
+        : error.message
+    );
+  }
+};
