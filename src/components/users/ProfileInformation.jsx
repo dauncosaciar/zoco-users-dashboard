@@ -1,27 +1,53 @@
+import { useEffect } from "react";
 import { Pencil, Plus } from "lucide-react";
+import useAuth from "@/hooks/useAuth";
+import useUsers from "@/hooks/useUsers";
+import { ADMIN } from "@/utils/constants";
 
-export default function ProfileInformation() {
+export default function ProfileInformation({ userId = null }) {
+  const { user: loggedUser } = useAuth();
+  const {
+    selectedUser,
+    selectedUserLoading,
+    fetchUserById,
+    resetSelectedUser
+  } = useUsers();
+
+  const targetUserId = userId || loggedUser.id;
+
+  useEffect(() => {
+    fetchUserById(targetUserId);
+
+    return () => {
+      resetSelectedUser();
+    };
+  }, [targetUserId, fetchUserById, resetSelectedUser]);
+
+  const { name, lastName, phone, role, email } = selectedUser;
+
+  if (selectedUserLoading) return "Cargando...";
+
   return (
     <div className="profile-information">
       <h2 className="profile-information__heading">
-        Usuario: Nombre, Apellido
+        Usuario: {name}, {lastName}
       </h2>
 
       <div className="profile-information__user">
         <div className="profile-information__user-content">
           <div className="profile-information__user-role">
             <span>Rol</span>
-            <p>Administrador</p>
+            <p>{role === ADMIN ? "Administrador" : "Usuario"}</p>
           </div>
 
           <div className="profile-information__user-email">
             <span>Email</span>
-            <p>user@mail.com</p>
+            <p>{email}</p>
           </div>
 
           <div className="profile-information__user-phone">
             <span>Teléfono</span>
-            <p>3810003344</p>
+            <p>{phone}</p>
           </div>
         </div>
 
