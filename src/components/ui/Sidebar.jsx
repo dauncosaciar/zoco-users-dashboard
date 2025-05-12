@@ -4,11 +4,18 @@ import Welcome from "./Welcome";
 import useAuth from "@/hooks/useAuth";
 import useMobile from "@/hooks/useMobile";
 import { ADMIN } from "@/utils/constants";
+import useUsers from "@/hooks/useUsers";
 
 export default function Sidebar({ isSidebarOpen, closeSidebar, sidebarRef }) {
-  const { role } = useAuth();
+  const { role, logout } = useAuth();
+  const { clearUsersData } = useUsers();
   const { isMobile } = useMobile();
   const location = useLocation();
+
+  const handleLogout = () => {
+    clearUsersData();
+    logout();
+  };
 
   return (
     <div ref={sidebarRef} className={`sidebar${isSidebarOpen ? " open" : ""}`}>
@@ -63,7 +70,11 @@ export default function Sidebar({ isSidebarOpen, closeSidebar, sidebarRef }) {
 
       {isMobile && (
         <div className="sidebar__logout">
-          <button className="sidebar__logout-button" type="button">
+          <button
+            className="sidebar__logout-button"
+            type="button"
+            onClick={handleLogout}
+          >
             <LogOut /> Cerrar Sesión
           </button>
         </div>

@@ -2,11 +2,14 @@ import { Link } from "react-router-dom";
 import { AlignRight, LogOut } from "lucide-react";
 import Logo from "./Logo";
 import useAuth from "@/hooks/useAuth";
+import useUsers from "@/hooks/useUsers";
 
 export default function Header({ toggleSidebar, toggleRef, isMobile }) {
   const { logout } = useAuth();
+  const { clearUsersData } = useUsers();
 
   const handleLogout = () => {
+    clearUsersData();
     logout();
   };
 

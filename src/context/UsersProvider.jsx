@@ -54,6 +54,11 @@ const UsersProvider = ({ children }) => {
     setSelectedUser({});
   }, []);
 
+  const clearUsersData = () => {
+    setUsers([]);
+    setSelectedUser({});
+  };
+
   return (
     <UsersContext.Provider
       value={{
@@ -62,7 +67,8 @@ const UsersProvider = ({ children }) => {
         selectedUser,
         selectedUserLoading,
         fetchUserById,
-        resetSelectedUser
+        resetSelectedUser,
+        clearUsersData
       }}
     >
       {children}
