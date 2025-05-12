@@ -1,10 +1,12 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Pencil, Plus } from "lucide-react";
 import useAuth from "@/hooks/useAuth";
 import useUsers from "@/hooks/useUsers";
 import { ADMIN } from "@/utils/constants";
 
-export default function ProfileInformation({ userId = null }) {
+export default function ProfileInformation() {
+  const location = useLocation();
   const { user: loggedUser } = useAuth();
   const {
     selectedUser,
@@ -15,7 +17,8 @@ export default function ProfileInformation({ userId = null }) {
     studies
   } = useUsers();
 
-  const targetUserId = userId || loggedUser.id;
+  const passedUserId = location.state?.userId;
+  const targetUserId = passedUserId || loggedUser.id;
 
   useEffect(() => {
     fetchUserById(targetUserId);

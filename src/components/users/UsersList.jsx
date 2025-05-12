@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { Eye, Trash2, UserPlus } from "lucide-react";
 import useUsers from "@/hooks/useUsers";
 import { ADMIN } from "@/utils/constants";
 
 export default function UsersList() {
+  const navigate = useNavigate();
   const { users, usersLoading } = useUsers();
 
   if (usersLoading) return "Cargando...";
@@ -46,9 +48,17 @@ export default function UsersList() {
                     </td>
                     <td className="users-list__table-td">
                       <div className="users-list__table-actions">
-                        <a href="#" className="users-list__table-actions-see">
+                        <button
+                          type="button"
+                          className="users-list__table-actions-see"
+                          onClick={() =>
+                            navigate("/dashboard/user-details", {
+                              state: { userId: user.id }
+                            })
+                          }
+                        >
                           <Eye />
-                        </a>
+                        </button>
                         <button
                           type="button"
                           className="users-list__table-actions-delete"
