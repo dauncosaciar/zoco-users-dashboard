@@ -33,7 +33,7 @@ export default function ProfileInformation() {
               console.log("Editar usuario...");
             }}
           >
-            Editar
+            <Pencil /> Editar
           </button>
         </div>
       </div>
@@ -47,35 +47,41 @@ export default function ProfileInformation() {
             </button>
           </h3>
 
-          <div className="profile-information__responsive-frame">
-            <table className="profile-information__table">
-              <thead className="profile-information__table-thead">
-                <tr>
-                  <th className="profile-information__table-th">Calle</th>
-                  <th className="profile-information__table-th">Ciudad</th>
-                  <th className="profile-information__table-th">País</th>
-                  <th className="profile-information__table-th">Acciones</th>
-                </tr>
-              </thead>
+          <div className="profile-information__addresses-content">
+            <div className="profile-information__responsive-frame">
+              <table className="profile-information__table">
+                <thead className="profile-information__table-thead">
+                  <tr>
+                    <th className="profile-information__table-th">Calle</th>
+                    <th className="profile-information__table-th">Ciudad</th>
+                    <th className="profile-information__table-th">País</th>
+                    <th className="profile-information__table-th">Acciones</th>
+                  </tr>
+                </thead>
 
-              <tbody className="profile-information__table-tbody">
-                <tr className="profile-information__table-tr">
-                  <td className="profile-information__table-td">Italia 123</td>
-                  <td className="profile-information__table-td">SM Tucumán</td>
-                  <td className="profile-information__table-td">Argentina</td>
-                  <td className="profile-information__table-td">
-                    <div className="profile-information__table-actions">
-                      <button
-                        type="button"
-                        className="profile-information__table-actions-edit"
-                      >
-                        <Pencil />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                <tbody className="profile-information__table-tbody">
+                  <tr className="profile-information__table-tr">
+                    <td className="profile-information__table-td">
+                      Italia 123
+                    </td>
+                    <td className="profile-information__table-td">
+                      SM Tucumán
+                    </td>
+                    <td className="profile-information__table-td">Argentina</td>
+                    <td className="profile-information__table-td">
+                      <div className="profile-information__table-actions">
+                        <button
+                          type="button"
+                          className="profile-information__table-actions-edit"
+                        >
+                          <Pencil />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
@@ -87,35 +93,39 @@ export default function ProfileInformation() {
             </button>
           </h3>
 
-          <div className="profile-information__responsive-frame">
-            <table className="profile-information__table">
-              <thead className="profile-information__table-thead">
-                <tr>
-                  <th className="profile-information__table-th">Grado</th>
-                  <th className="profile-information__table-th">Institución</th>
-                  <th className="profile-information__table-th">Acciones</th>
-                </tr>
-              </thead>
+          <div className="profile-information__studies-content">
+            <div className="profile-information__responsive-frame">
+              <table className="profile-information__table">
+                <thead className="profile-information__table-thead">
+                  <tr>
+                    <th className="profile-information__table-th">Grado</th>
+                    <th className="profile-information__table-th">
+                      Institución
+                    </th>
+                    <th className="profile-information__table-th">Acciones</th>
+                  </tr>
+                </thead>
 
-              <tbody className="profile-information__table-tbody">
-                <tr className="profile-information__table-tr">
-                  <td className="profile-information__table-td">
-                    Ciencia de Datos
-                  </td>
-                  <td className="profile-information__table-td">UTN</td>
-                  <td className="profile-information__table-td">
-                    <div className="profile-information__table-actions">
-                      <button
-                        type="button"
-                        className="profile-information__table-actions-edit"
-                      >
-                        <Pencil />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                <tbody className="profile-information__table-tbody">
+                  <tr className="profile-information__table-tr">
+                    <td className="profile-information__table-td">
+                      Ciencia de Datos
+                    </td>
+                    <td className="profile-information__table-td">UTN</td>
+                    <td className="profile-information__table-td">
+                      <div className="profile-information__table-actions">
+                        <button
+                          type="button"
+                          className="profile-information__table-actions-edit"
+                        >
+                          <Pencil />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

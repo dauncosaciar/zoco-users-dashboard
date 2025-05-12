@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "@/styles/abstracts/variables" as v;
 @use "@/styles/abstracts/mixins" as m;
 
@@ -11,5 +12,158 @@
 
   &__heading {
     @include m.heading-with-border(v.$primary, v.$grey);
+  }
+
+  &__user {
+    background-color: v.$white;
+    margin-bottom: 5rem;
+    padding: 2rem 1rem;
+    border-radius: 1.2rem;
+    box-shadow: 0px 10px 15px -3px color.adjust(v.$light-grey, $lightness: -5%);
+
+    @include m.tablet {
+      display: flex;
+      align-items: flex-end;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    @include m.desktop-xl {
+      padding: 3rem;
+    }
+  }
+
+  &__user-content {
+    @include m.grid(1, 2rem);
+
+    @include m.tablet {
+      flex-grow: 1;
+
+      @include m.grid(3, 2rem);
+    }
+  }
+
+  &__user-role,
+  &__user-email,
+  &__user-phone {
+    span {
+      color: color.adjust(v.$black, $lightness: 55%);
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      @include m.desktop {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  &__edit {
+    margin-top: 2rem;
+
+    @include m.tablet {
+      margin-top: 0;
+    }
+  }
+
+  &__edit-button {
+    @include m.button(v.$primary, v.$white, v.$secondary);
+
+    & {
+      width: auto;
+    }
+  }
+
+  &__other {
+    @include m.tablet {
+      @include m.grid(2, 2rem);
+    }
+
+    @include m.desktop-xl {
+      @include m.grid(2, 6rem);
+    }
+  }
+
+  &__addresses {
+    margin-bottom: 2rem;
+
+    @include m.tablet {
+      margin-bottom: 0;
+    }
+  }
+
+  &__addresses-heading,
+  &__studies-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+
+    @include m.phone {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button {
+      @include m.button(v.$primary, v.$white, v.$secondary);
+
+      & {
+        width: auto;
+        padding: 0.5rem 1rem;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  &__addresses-content,
+  &__studies-content {
+    background-color: v.$white;
+    padding: 2rem 1rem;
+    border-radius: 1.2rem;
+    box-shadow: 0px 10px 15px -3px color.adjust(v.$light-grey, $lightness: -5%);
+
+    @include m.tablet {
+      padding: 2rem;
+    }
+
+    @include m.desktop-xl {
+      padding: 3rem;
+    }
+  }
+
+  &__responsive-frame {
+    overflow-x: auto;
+  }
+
+  &__table {
+    @include m.table;
+
+    & {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__table-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+
+    &-edit {
+      @include m.nav-link(v.$primary);
+
+      & {
+        padding: 0.5rem;
+        width: auto;
+
+        svg {
+          width: 2rem;
+        }
+      }
+    }
   }
 }
