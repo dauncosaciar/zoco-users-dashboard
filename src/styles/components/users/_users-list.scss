@@ -45,6 +45,12 @@
     @include m.table;
   }
 
+  &__table-td {
+    &--center {
+      text-align: center;
+    }
+  }
+
   &__table-actions {
     display: flex;
     justify-content: flex-start;
