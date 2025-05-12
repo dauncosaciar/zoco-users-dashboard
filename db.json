@@ -17,6 +17,15 @@
       "phone": 3810003344,
       "password": "1234",
       "role": "user"
+    },
+    {
+      "id": 3,
+      "name": "Juan",
+      "lastName": "Pérez",
+      "email": "juan.perez@correo.com",
+      "phone": 3811112233,
+      "password": "1234",
+      "role": "admin"
     }
   ],
   "studies": [
