@@ -6,9 +6,32 @@ import {
   Transition,
   TransitionChild
 } from "@headlessui/react";
-import { X } from "lucide-react";
+import { UserPlus, X } from "lucide-react";
+import { useForm } from "react-hook-form";
+import Form from "../form/Form";
+import UserFormFields from "./UserFormFields";
 
 export default function CreateUserModal({ isOpen, onClose, title }) {
+  const initialValues = {
+    name: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: "",
+    role: ""
+  };
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm({ defaultValues: initialValues });
+
+  const handleForm = () => {
+    console.log("enviando form...");
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="create-user-modal" onClose={onClose}>
@@ -42,7 +65,20 @@ export default function CreateUserModal({ isOpen, onClose, title }) {
               <DialogTitle className="create-user-modal__title">
                 {title}
               </DialogTitle>
-              <div className="create-user-modal__content">Contenido...</div>
+
+              <div className="create-user-modal__content">
+                <Form
+                  handleSubmit={handleSubmit}
+                  fnSubmit={handleForm}
+                  InnerFormFields={UserFormFields}
+                  register={register}
+                  errors={errors}
+                  submitIcon={UserPlus}
+                  submitText="Crear"
+                  reset={reset}
+                />
+              </div>
+
               <button onClick={onClose} className="create-user-modal__close">
                 <X />
               </button>

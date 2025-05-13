@@ -7,13 +7,14 @@ export default function Form({
   register,
   errors,
   submitIcon,
-  submitText
+  submitText,
+  reset = () => {}
 }) {
   const Icon = submitIcon;
 
   return (
     <form className="form" onSubmit={handleSubmit(fnSubmit)} noValidate>
-      {createElement(InnerFormFields, { register, errors })}
+      {createElement(InnerFormFields, { register, errors, reset })}
 
       <button className="form__submit" type="submit">
         <Icon /> {submitText}
