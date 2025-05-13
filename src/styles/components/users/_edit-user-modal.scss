@@ -1,0 +1,5 @@
+@use "@/styles/abstracts/mixins" as m;
+
+.edit-user-modal {
+  @include m.headless-ui-modal;
+}

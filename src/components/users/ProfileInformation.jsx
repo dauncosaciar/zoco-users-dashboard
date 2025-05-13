@@ -3,7 +3,9 @@ import { useLocation } from "react-router-dom";
 import { Pencil, Plus } from "lucide-react";
 import useAuth from "@/hooks/useAuth";
 import useUsers from "@/hooks/useUsers";
+import useModal from "@/hooks/useModal";
 import { ADMIN } from "@/utils/constants";
+import EditUserModal from "./EditUserModal";
 
 export default function ProfileInformation() {
   const location = useLocation();
@@ -16,9 +18,14 @@ export default function ProfileInformation() {
     addresses,
     studies
   } = useUsers();
+  const { openEditUserModal, setOpenEditUserModal } = useModal();
 
   const passedUserId = location.state?.userId;
   const targetUserId = passedUserId || loggedUser.id;
+
+  const handleEditUserModal = () => {
+    setOpenEditUserModal(!openEditUserModal);
+  };
 
   useEffect(() => {
     fetchUserById(targetUserId);
@@ -60,9 +67,7 @@ export default function ProfileInformation() {
           <button
             className="profile-information__edit-button"
             type="button"
-            onClick={() => {
-              console.log("Editar usuario...");
-            }}
+            onClick={handleEditUserModal}
           >
             <Pencil /> Editar
           </button>
@@ -196,6 +201,12 @@ export default function ProfileInformation() {
           </div>
         </div>
       </div>
+
+      <EditUserModal
+        isOpen={openEditUserModal}
+        onClose={handleEditUserModal}
+        title={`Editar Usuario: ${selectedUser.name}`}
+      />
     </div>
   );
 }
