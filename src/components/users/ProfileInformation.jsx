@@ -6,6 +6,7 @@ import useUsers from "@/hooks/useUsers";
 import useModal from "@/hooks/useModal";
 import { ADMIN } from "@/utils/constants";
 import EditUserModal from "./EditUserModal";
+import CreateAddressModal from "./CreateAddressModal";
 
 export default function ProfileInformation() {
   const location = useLocation();
@@ -18,13 +19,22 @@ export default function ProfileInformation() {
     addresses,
     studies
   } = useUsers();
-  const { openEditUserModal, setOpenEditUserModal } = useModal();
+  const {
+    openEditUserModal,
+    setOpenEditUserModal,
+    openCreateAddressModal,
+    setOpenCreateAddressModal
+  } = useModal();
 
   const passedUserId = location.state?.userId;
   const targetUserId = passedUserId || loggedUser.id;
 
   const handleEditUserModal = () => {
     setOpenEditUserModal(!openEditUserModal);
+  };
+
+  const handleCreateAddressModal = () => {
+    setOpenCreateAddressModal(!openCreateAddressModal);
   };
 
   useEffect(() => {
@@ -78,7 +88,7 @@ export default function ProfileInformation() {
         <div className="profile-information__addresses">
           <h3 className="profile-information__addresses-heading">
             <span>Direcciones</span>
-            <button type="button">
+            <button type="button" onClick={handleCreateAddressModal}>
               <Plus /> Agregar Dirección
             </button>
           </h3>
@@ -206,6 +216,12 @@ export default function ProfileInformation() {
         isOpen={openEditUserModal}
         onClose={handleEditUserModal}
         title={`Editando datos personales de: ${selectedUser.name}, ${selectedUser.lastName}`}
+      />
+
+      <CreateAddressModal
+        isOpen={openCreateAddressModal}
+        onClose={handleCreateAddressModal}
+        title="Crear Dirección"
       />
     </div>
   );
