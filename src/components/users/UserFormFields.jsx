@@ -1,8 +1,17 @@
+import useAuth from "@/hooks/useAuth";
+import useUsers from "@/hooks/useUsers";
 import useModal from "@/hooks/useModal";
 import ErrorMessage from "../form/ErrorMessage";
 import { useEffect } from "react";
 
-export default function UserFormFields({ register, errors, reset }) {
+export default function UserFormFields({
+  register,
+  errors,
+  reset,
+  isEditing = false
+}) {
+  const { user: loggedUser } = useAuth();
+  const { selectedUser } = useUsers();
   const { openCreateUserModal } = useModal();
 
   useEffect(() => {
@@ -117,6 +126,7 @@ export default function UserFormFields({ register, errors, reset }) {
         <select
           id="role"
           className={`form__input${errors.role ? " form__input--error" : ""}`}
+          disabled={isEditing && loggedUser.id === selectedUser.id}
           {...register("role", {
             required: "El rol es obligatorio."
           })}

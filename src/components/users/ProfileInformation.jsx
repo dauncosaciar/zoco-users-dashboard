@@ -205,7 +205,7 @@ export default function ProfileInformation() {
       <EditUserModal
         isOpen={openEditUserModal}
         onClose={handleEditUserModal}
-        title={`Editar Usuario: ${selectedUser.name}`}
+        title={`Editando datos personales de: ${selectedUser.name}, ${selectedUser.lastName}`}
       />
     </div>
   );

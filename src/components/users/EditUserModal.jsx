@@ -14,7 +14,7 @@ import useUsers from "@/hooks/useUsers";
 import { toast } from "sonner";
 
 export default function EditUserModal({ isOpen, onClose, title }) {
-  const { selectedUser } = useUsers();
+  const { editUser, selectedUser } = useUsers();
 
   const initialValues = {
     name: selectedUser.name,
@@ -40,22 +40,25 @@ export default function EditUserModal({ isOpen, onClose, title }) {
     const password = formData.password;
     const role = formData.role;
 
-    // const result = await addUser({
-    //   name,
-    //   lastName,
-    //   email,
-    //   phone,
-    //   password,
-    //   role
-    // });
+    const result = await editUser(
+      {
+        name,
+        lastName,
+        email,
+        phone,
+        password,
+        role
+      },
+      selectedUser.id
+    );
 
-    // if (!result.success) {
-    //   toast.error(result.error);
-    //   return;
-    // }
+    if (!result.success) {
+      toast.error(result.error);
+      return;
+    }
 
-    // toast.success("Usuario creado correctamente");
-    // onClose();
+    toast.success("Usuario actualizado correctamente");
+    onClose();
   };
 
   return (
@@ -102,6 +105,7 @@ export default function EditUserModal({ isOpen, onClose, title }) {
                   submitIcon={UserPen}
                   submitText="Guardar Cambios"
                   reset={reset}
+                  isEditing={true}
                 />
               </div>
 

@@ -1,22 +1,22 @@
 {
   "users": [
     {
-      "id": "acjfd",
-      "name": "Julio",
+      "name": "Julio Argentino",
       "lastName": "César",
       "email": "admin@mail.com",
-      "phone": 3810001122,
-      "password": "1234",
-      "role": "admin"
+      "phone": 3815555555,
+      "password": "123456",
+      "role": "admin",
+      "id": "acjfd"
     },
     {
-      "id": "uiood",
-      "name": "Marco",
+      "name": "Marco Julio",
       "lastName": "Antonio",
       "email": "user@mail.com",
       "phone": 3810003344,
       "password": "1234",
-      "role": "user"
+      "role": "user",
+      "id": "uiood"
     },
     {
       "id": "bkaii",
@@ -55,13 +55,13 @@
       "role": "admin"
     },
     {
-      "id": "a6ca",
-      "name": "Ricardo",
-      "lastName": "fdaf",
-      "email": "otro@correo.com",
-      "phone": 341341,
-      "password": "123",
-      "role": "admin"
+      "name": "Ricardo Martín",
+      "lastName": "Colindante",
+      "email": "ricardo.martin.colindante@correo.com",
+      "phone": 3815559977,
+      "password": "1234",
+      "role": "admin",
+      "id": "a6ca"
     }
   ],
   "studies": [

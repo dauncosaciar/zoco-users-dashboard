@@ -1,5 +1,6 @@
 import axiosClient from "@/config/axiosClient";
 
+// Users
 export const createUser = async formData => {
   try {
     const { data: existingUser } = await axiosClient.get(
@@ -66,6 +67,33 @@ export const getUserById = async userId => {
   }
 };
 
+export const updateUser = async (formData, userId) => {
+  try {
+    const { data: existingUser } = await axiosClient.get(
+      `/users?email=${formData.email}`
+    );
+
+    const emailAlreadyUsed = existingUser.some(user => user.id !== userId);
+
+    if (emailAlreadyUsed) {
+      throw new Error("Un usuario con ese email ya está registrado");
+    }
+
+    const url = `/users/${userId}`;
+    const { data } = await axiosClient.put(url, formData);
+    return data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(
+        "Error al actualizar el usuario. Inténtalo nuevamente más tarde"
+      );
+    } else {
+      throw new Error(error.message);
+    }
+  }
+};
+
+// Addresses
 export const getAddressesByUserId = async userId => {
   try {
     const url = `/addresses?userId=${userId}`;
@@ -80,6 +108,7 @@ export const getAddressesByUserId = async userId => {
   }
 };
 
+// Studies
 export const getStudiesByUserId = async userId => {
   try {
     const url = `/studies?userId=${userId}`;

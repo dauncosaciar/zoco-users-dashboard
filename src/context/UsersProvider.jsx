@@ -5,7 +5,8 @@ import {
   getAddressesByUserId,
   getAllUsersExceptLogged,
   getStudiesByUserId,
-  getUserById
+  getUserById,
+  updateUser
 } from "@/api/UsersApi";
 
 const UsersContext = createContext();
@@ -78,6 +79,16 @@ const UsersProvider = ({ children }) => {
     }
   };
 
+  const editUser = async (formData, userId) => {
+    try {
+      const updatedUser = await updateUser(formData, userId);
+      setSelectedUser(updatedUser);
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  };
+
   const resetSelectedUser = useCallback(() => {
     setSelectedUser({});
     setAddresses([]);
@@ -99,6 +110,7 @@ const UsersProvider = ({ children }) => {
         addresses,
         studies,
         addUser,
+        editUser,
         fetchUserById,
         resetSelectedUser,
         clearUsersData
