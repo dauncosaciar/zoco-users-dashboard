@@ -116,6 +116,91 @@
   }
 }
 
+// Modals
+@mixin headless-ui-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+
+  &__container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0 0 0 / 0.5);
+  }
+
+  &__panel {
+    background: white;
+    border-radius: 0.8rem;
+    padding: 2rem;
+    z-index: 60;
+    max-width: 50rem;
+    width: 90%;
+    box-shadow: 0 5px 20px rgba(0 0 0 / 0.3);
+    position: relative;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__content {
+    margin-bottom: 1.5rem;
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__trick {
+    display: inline-block;
+    height: 100vh;
+    vertical-align: middle;
+  }
+
+  &__fade-enter,
+  &__fade-leave {
+    transition: opacity 0.3s ease;
+  }
+
+  &__fade-from {
+    opacity: 0;
+  }
+
+  &__fade-to {
+    opacity: 1;
+  }
+
+  &__panel-enter,
+  &__panel-leave {
+    transition: all 0.3s ease;
+  }
+
+  &__panel-from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  &__panel-to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 // CSS grids
 @mixin grid($columns, $spacing) {
   display: grid;

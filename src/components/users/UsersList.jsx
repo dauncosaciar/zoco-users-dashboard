@@ -1,11 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { Eye, Trash2, UserPlus } from "lucide-react";
 import useUsers from "@/hooks/useUsers";
+import useModal from "@/hooks/useModal";
 import { ADMIN } from "@/utils/constants";
+import CreateUserModal from "./CreateUserModal";
 
 export default function UsersList() {
   const navigate = useNavigate();
   const { users, usersLoading } = useUsers();
+  const { openCreateUserModal, setOpenCreateUserModal } = useModal();
+
+  const handleCreateUserModal = () => {
+    setOpenCreateUserModal(!openCreateUserModal);
+  };
 
   if (usersLoading) return "Cargando...";
 
@@ -15,9 +22,7 @@ export default function UsersList() {
         <button
           className="users-list__new-button"
           type="button"
-          onClick={() => {
-            console.log("Nuevo usuario...");
-          }}
+          onClick={handleCreateUserModal}
         >
           <UserPlus /> Crear Usuario
         </button>
@@ -83,6 +88,12 @@ export default function UsersList() {
           </table>
         </div>
       </div>
+
+      <CreateUserModal
+        isOpen={openCreateUserModal}
+        onClose={handleCreateUserModal}
+        title="Crear Usuario"
+      />
     </div>
   );
 }
