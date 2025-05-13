@@ -26,6 +26,42 @@
       "phone": 3811112233,
       "password": "1234",
       "role": "admin"
+    },
+    {
+      "id": "609d",
+      "name": "Ricardo",
+      "lastName": "Gimenez",
+      "email": "ricardo.gimenez@correo.com",
+      "phone": 3814442299,
+      "password": "123456",
+      "role": "user"
+    },
+    {
+      "id": "1394",
+      "name": "Don",
+      "lastName": "Perro",
+      "email": "donperro@correo.com",
+      "phone": 124545,
+      "password": "1234",
+      "role": "user"
+    },
+    {
+      "id": "dfd4",
+      "name": "Danilo",
+      "lastName": "Matías",
+      "email": "danilo.matias@correo.com",
+      "phone": 3805665,
+      "password": "1234",
+      "role": "admin"
+    },
+    {
+      "id": "a6ca",
+      "name": "Ricardo",
+      "lastName": "fdaf",
+      "email": "otro@correo.com",
+      "phone": 341341,
+      "password": "123",
+      "role": "admin"
     }
   ],
   "studies": [

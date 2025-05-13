@@ -1,5 +1,29 @@
 import axiosClient from "@/config/axiosClient";
 
+export const createUser = async formData => {
+  try {
+    const { data: existingUser } = await axiosClient.get(
+      `/users?email=${formData.email}`
+    );
+
+    if (existingUser.length > 0) {
+      throw new Error("Un usuario con ese email ya está registrado");
+    }
+
+    const url = "/users";
+    const { data } = await axiosClient.post(url, formData);
+    return data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(
+        "Error al crear el usuario. Inténtalo nuevamente más tarde"
+      );
+    } else {
+      throw new Error(error.message);
+    }
+  }
+};
+
 export const getAllUsersExceptLogged = async loggedUserId => {
   try {
     const url = "/users";

@@ -3,6 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import Header from "@/components/ui/Header";
 import Sidebar from "@/components/ui/Sidebar";
 import Overlay from "@/components/ui/Overlay";
+import Notification from "@/components/ui/Notification";
 import useAuth from "@/hooks/useAuth";
 import useSidebarControl from "@/hooks/useSidebarControl";
 import useMobile from "@/hooks/useMobile";
@@ -48,6 +49,8 @@ export default function AppLayout() {
           <Outlet />
         </main>
       </div>
+
+      <Notification />
     </div>
   ) : (
     <Navigate to="/" />

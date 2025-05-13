@@ -10,8 +10,12 @@ import { UserPlus, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import Form from "../form/Form";
 import UserFormFields from "./UserFormFields";
+import useUsers from "@/hooks/useUsers";
+import { toast } from "sonner";
 
 export default function CreateUserModal({ isOpen, onClose, title }) {
+  const { addUser } = useUsers();
+
   const initialValues = {
     name: "",
     lastName: "",
@@ -28,8 +32,30 @@ export default function CreateUserModal({ isOpen, onClose, title }) {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
-  const handleForm = () => {
-    console.log("enviando form...");
+  const handleForm = async formData => {
+    const name = formData.name;
+    const lastName = formData.lastName;
+    const email = formData.email;
+    const phone = +formData.phone;
+    const password = formData.password;
+    const role = formData.role;
+
+    const result = await addUser({
+      name,
+      lastName,
+      email,
+      phone,
+      password,
+      role
+    });
+
+    if (!result.success) {
+      toast.error(result.error);
+      return;
+    }
+
+    toast.success("Usuario creado correctamente");
+    onClose();
   };
 
   return (
