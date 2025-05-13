@@ -6,10 +6,10 @@ import {
   Transition,
   TransitionChild
 } from "@headlessui/react";
-import { UserPlus, X } from "lucide-react";
+import { NotebookTabs, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import Form from "../form/Form";
-import UserFormFields from "./UserFormFields";
+import AddressFormFields from "./AddressFormFields";
 import useUsers from "@/hooks/useUsers";
 import { toast } from "sonner";
 
@@ -89,10 +89,10 @@ export default function CreateAddressModal({ isOpen, onClose, title }) {
                 <Form
                   handleSubmit={handleSubmit}
                   fnSubmit={handleForm}
-                  InnerFormFields={UserFormFields}
+                  InnerFormFields={AddressFormFields}
                   register={register}
                   errors={errors}
-                  submitIcon={UserPlus}
+                  submitIcon={NotebookTabs}
                   submitText="Crear"
                   reset={reset}
                 />
