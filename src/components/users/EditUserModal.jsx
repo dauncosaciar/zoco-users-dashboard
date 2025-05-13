@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -31,6 +31,10 @@ export default function EditUserModal({ isOpen, onClose, title }) {
     reset,
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
+
+  useEffect(() => {
+    reset(selectedUser);
+  }, [selectedUser, reset]);
 
   const handleForm = async formData => {
     const name = formData.name;

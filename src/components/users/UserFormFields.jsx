@@ -12,13 +12,13 @@ export default function UserFormFields({
 }) {
   const { user: loggedUser } = useAuth();
   const { selectedUser } = useUsers();
-  const { openCreateUserModal } = useModal();
+  const { openCreateUserModal, openEditUserModal } = useModal();
 
   useEffect(() => {
-    if (!openCreateUserModal) {
+    if (!openCreateUserModal && !openEditUserModal) {
       reset();
     }
-  }, [openCreateUserModal, reset]);
+  }, [openCreateUserModal, openEditUserModal, reset]);
 
   return (
     <>

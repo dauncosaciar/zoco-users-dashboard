@@ -1,16 +1,16 @@
 {
   "users": [
     {
-      "name": "Julio Argentino",
+      "name": "Julio",
       "lastName": "César",
       "email": "admin@mail.com",
-      "phone": 3815555555,
+      "phone": 3814560123,
       "password": "123456",
       "role": "admin",
       "id": "acjfd"
     },
     {
-      "name": "Marco Julio",
+      "name": "Marco",
       "lastName": "Antonio",
       "email": "user@mail.com",
       "phone": 3810003344,
@@ -55,13 +55,22 @@
       "role": "admin"
     },
     {
-      "name": "Ricardo Martín",
+      "name": "Ricardo",
       "lastName": "Colindante",
       "email": "ricardo.martin.colindante@correo.com",
       "phone": 3815559977,
       "password": "1234",
       "role": "admin",
       "id": "a6ca"
+    },
+    {
+      "name": "Isa",
+      "lastName": "Dina",
+      "email": "isadina@correo.com",
+      "phone": 3817772211,
+      "password": "12345",
+      "role": "admin",
+      "id": "26eb"
     }
   ],
   "studies": [
