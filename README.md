@@ -27,8 +27,15 @@ VITE_BACKEND_URL=http://localhost:8888
 
 ### Datos de prueba de acceso
 
+**USUARIO ADMIN**
+
 - Email: `admin@mail.com`
 - Pass: `123456`
+
+**USUARIO NORMAL**
+
+- Email: `user@mail.com`
+- Pass: `1234`
 
 ### Consideraciones adicionales
 
