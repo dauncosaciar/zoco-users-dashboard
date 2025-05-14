@@ -1,0 +1,5 @@
+@use "@/styles/abstracts/mixins" as m;
+
+.edit-study-modal {
+  @include m.headless-ui-modal;
+}

@@ -23,6 +23,7 @@ const UsersProvider = ({ children }) => {
   const [usersLoading, setUsersLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState({});
   const [selectedAddress, setSelectedAddress] = useState({});
+  const [selectedStudy, setSelectedStudy] = useState({});
   const [selectedUserLoading, setSelectedUserLoading] = useState(false);
 
   useEffect(() => {
@@ -162,6 +163,7 @@ const UsersProvider = ({ children }) => {
         usersLoading,
         selectedUser,
         selectedAddress,
+        selectedStudy,
         selectedUserLoading,
         addresses,
         studies,
@@ -174,7 +176,8 @@ const UsersProvider = ({ children }) => {
         addAddressForUser,
         editAddress,
         fetchAddressById,
-        addStudyForUser
+        addStudyForUser,
+        setSelectedStudy
       }}
     >
       {children}

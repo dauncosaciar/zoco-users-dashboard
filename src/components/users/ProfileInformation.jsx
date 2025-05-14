@@ -9,6 +9,7 @@ import EditUserModal from "./EditUserModal";
 import CreateAddressModal from "./CreateAddressModal";
 import EditAddressModal from "./EditAddressModal";
 import CreateStudyModal from "./CreateStudyModal";
+import EditStudyModal from "./EditStudyModal";
 
 export default function ProfileInformation() {
   const location = useLocation();
@@ -21,7 +22,8 @@ export default function ProfileInformation() {
     resetSelectedUser,
     addresses,
     studies,
-    setSelectedAddress
+    setSelectedAddress,
+    setSelectedStudy
   } = useUsers();
 
   const {
@@ -32,7 +34,9 @@ export default function ProfileInformation() {
     openEditAddressModal,
     setOpenEditAddressModal,
     openCreateStudyModal,
-    setOpenCreateStudyModal
+    setOpenCreateStudyModal,
+    openEditStudyModal,
+    setOpenEditStudyModal
   } = useModal();
 
   const passedUserId = location.state?.userId;
@@ -53,6 +57,11 @@ export default function ProfileInformation() {
 
   const handleCreateStudyModal = () => {
     setOpenCreateStudyModal(!openCreateStudyModal);
+  };
+
+  const handleEditStudyModal = study => {
+    setSelectedStudy(study);
+    setOpenEditStudyModal(true);
   };
 
   useEffect(() => {
@@ -207,6 +216,7 @@ export default function ProfileInformation() {
                             <button
                               type="button"
                               className="profile-information__table-actions-edit"
+                              onClick={() => handleEditStudyModal(study)}
                             >
                               <Pencil />
                             </button>
@@ -253,6 +263,12 @@ export default function ProfileInformation() {
         isOpen={openCreateStudyModal}
         onClose={handleCreateStudyModal}
         title="Crear Estudio"
+      />
+
+      <EditStudyModal
+        isOpen={openEditStudyModal}
+        onClose={setOpenEditStudyModal}
+        title="Editar Estudio"
       />
     </div>
   );
