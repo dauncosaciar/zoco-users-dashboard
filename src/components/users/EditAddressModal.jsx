@@ -14,15 +14,13 @@ import useUsers from "@/hooks/useUsers";
 import { toast } from "sonner";
 
 export default function EditAddressModal({ isOpen, onClose, title }) {
-  const { selectedAddress, fetchAddressById } = useUsers();
+  const { selectedAddress, fetchAddressById, editAddress } = useUsers();
 
   const initialValues = {
     street: "",
     city: "",
     country: ""
   };
-
-  console.log("selectedAddress:", selectedAddress);
 
   const {
     register,
@@ -39,17 +37,15 @@ export default function EditAddressModal({ isOpen, onClose, title }) {
   }, [isOpen, selectedAddress, fetchAddressById, reset]);
 
   const handleForm = async formData => {
-    // const result = await addAddressForUser(formData, selectedUserId);
+    const result = await editAddress(formData, selectedAddress.id);
 
-    // if (!result.success) {
-    //   toast.error(result.error);
-    //   return;
-    // }
+    if (!result.success) {
+      toast.error(result.error);
+      return;
+    }
 
-    // toast.success("Dirección creada correctamente");
-    // onClose();
-
-    console.log("handleForm...");
+    toast.success("Dirección actualizada correctamente");
+    onClose(false);
   };
 
   return (

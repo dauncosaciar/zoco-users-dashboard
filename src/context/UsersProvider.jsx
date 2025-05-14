@@ -8,6 +8,7 @@ import {
   getAllUsersExceptLogged,
   getStudiesByUserId,
   getUserById,
+  updateAddress,
   updateUser
 } from "@/api/UsersApi";
 
@@ -104,10 +105,28 @@ const UsersProvider = ({ children }) => {
 
   const fetchAddressById = async addressId => {
     try {
-      const { data } = await getAddressById(addressId);
-      console.log("data:", data);
+      const address = await getAddressById(addressId);
+      return address;
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const editAddress = async (formData, addressId) => {
+    try {
+      const updatedAddress = await updateAddress(formData, addressId);
+
+      setSelectedAddress(updatedAddress);
+
+      setAddresses(previousState =>
+        previousState.map(addr =>
+          addr.id === addressId ? updatedAddress : addr
+        )
+      );
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
     }
   };
 
@@ -139,6 +158,7 @@ const UsersProvider = ({ children }) => {
         clearUsersData,
         setSelectedAddress,
         addAddressForUser,
+        editAddress,
         fetchAddressById
       }}
     >

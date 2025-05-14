@@ -134,13 +134,29 @@ export const getAddressesByUserId = async userId => {
 export const getAddressById = async addressId => {
   try {
     const url = `/addresses/${addressId}`;
-    const { data: user } = await axiosClient.get(url);
+    const { data: address } = await axiosClient.get(url);
 
-    return user;
+    return address;
   } catch (error) {
     if (error.response) {
       throw new Error(
         "Error al obtener la dirección del usuario. Inténtalo nuevamente más tarde"
+      );
+    } else {
+      throw new Error(error.message);
+    }
+  }
+};
+
+export const updateAddress = async (formData, addressId) => {
+  try {
+    const url = `/addresses/${addressId}`;
+    const { data } = await axiosClient.put(url, formData);
+    return data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(
+        "Error al actualizar la dirección. Inténtalo nuevamente más tarde"
       );
     } else {
       throw new Error(error.message);
