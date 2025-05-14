@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { LogIn } from "lucide-react";
 import Form from "@/components/form/Form";
 import LoginFormFields from "@/components/auth/LoginFormFields";
 import useAuth from "@/hooks/useAuth";
+import { changeDocumentTitle } from "@/utils/functions";
 import { toast } from "sonner";
 
 export default function LoginView() {
@@ -18,6 +20,10 @@ export default function LoginView() {
     handleSubmit,
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
+
+  useEffect(() => {
+    changeDocumentTitle("Inicia Sesión");
+  }, []);
 
   const handleForm = async formData => {
     const email = formData.email;
