@@ -2,6 +2,7 @@ import { createContext, useCallback, useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import {
   createAddressForUser,
+  createStudyForUser,
   createUser,
   getAddressById,
   getAddressesByUserId,
@@ -130,6 +131,16 @@ const UsersProvider = ({ children }) => {
     }
   };
 
+  const addStudyForUser = async (formData, userId) => {
+    try {
+      const createdStudy = await createStudyForUser(formData, userId);
+      setStudies(previousState => [...previousState, createdStudy]);
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  };
+
   const resetSelectedUser = useCallback(() => {
     setSelectedUser({});
     setAddresses([]);
@@ -159,7 +170,8 @@ const UsersProvider = ({ children }) => {
         setSelectedAddress,
         addAddressForUser,
         editAddress,
-        fetchAddressById
+        fetchAddressById,
+        addStudyForUser
       }}
     >
       {children}

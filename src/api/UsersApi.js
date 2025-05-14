@@ -109,7 +109,7 @@ export const createAddressForUser = async (formData, userId) => {
   } catch (error) {
     if (error.response) {
       throw new Error(
-        "Error al crear el usuario. Inténtalo nuevamente más tarde"
+        "Error al crear la dirección. Inténtalo nuevamente más tarde"
       );
     } else {
       throw new Error(error.message);
@@ -165,6 +165,29 @@ export const updateAddress = async (formData, addressId) => {
 };
 
 // Studies
+export const createStudyForUser = async (formData, userId) => {
+  try {
+    const { data: existingUser } = await axiosClient.get(`/users?id=${userId}`);
+
+    if (existingUser.length < 0) {
+      throw new Error("No se encontró el usuario");
+    }
+
+    const url = "/studies";
+    const formDataWithUserId = { ...formData, userId: existingUser[0].id };
+    const { data } = await axiosClient.post(url, formDataWithUserId);
+    return data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(
+        "Error al crear el estudio. Inténtalo nuevamente más tarde"
+      );
+    } else {
+      throw new Error(error.message);
+    }
+  }
+};
+
 export const getStudiesByUserId = async userId => {
   try {
     const url = `/studies?userId=${userId}`;

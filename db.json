@@ -37,13 +37,13 @@
       "role": "user"
     },
     {
-      "id": "1394",
-      "name": "Don",
-      "lastName": "Perro",
-      "email": "donperro@correo.com",
-      "phone": 124545,
-      "password": "1234",
-      "role": "user"
+      "name": "Jorge",
+      "lastName": "Molinaro",
+      "email": "jorge.molinaro@correo.com",
+      "phone": 12454522,
+      "password": "3210",
+      "role": "user",
+      "id": "1394"
     },
     {
       "id": "dfd4",
@@ -85,6 +85,18 @@
       "userId": "uiood",
       "degree": "Diseñador Web",
       "institution": "UTN"
+    },
+    {
+      "id": "c7c4",
+      "degree": "Ingeniería Industrial",
+      "institution": "Universidad Nacional Tucumán",
+      "userId": "bkaii"
+    },
+    {
+      "id": "e9f6",
+      "degree": "Ingeniería Mecánica",
+      "institution": "UTN",
+      "userId": "acjfd"
     }
   ],
   "addresses": [
@@ -136,6 +148,13 @@
       "city": "Santiago",
       "country": "Argentina",
       "userId": "26eb"
+    },
+    {
+      "id": "f15a",
+      "street": "Laprida 89",
+      "city": "Tucumán",
+      "country": "Argentina",
+      "userId": "bkaii"
     }
   ]
 }

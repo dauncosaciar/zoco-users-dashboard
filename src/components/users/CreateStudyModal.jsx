@@ -14,6 +14,9 @@ import useUsers from "@/hooks/useUsers";
 import { toast } from "sonner";
 
 export default function CreateStudyModal({ isOpen, onClose, title }) {
+  const { selectedUser, addStudyForUser } = useUsers();
+  const selectedUserId = selectedUser.id;
+
   const initialValues = {
     degree: "",
     institution: ""
@@ -27,7 +30,15 @@ export default function CreateStudyModal({ isOpen, onClose, title }) {
   } = useForm({ defaultValues: initialValues });
 
   const handleForm = async formData => {
-    console.log(formData);
+    const result = await addStudyForUser(formData, selectedUserId);
+
+    if (!result.success) {
+      toast.error(result.error);
+      return;
+    }
+
+    toast.success("Estudio creado correctamente");
+    onClose();
   };
 
   return (
