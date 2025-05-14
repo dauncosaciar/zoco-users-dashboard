@@ -3,6 +3,7 @@ import useAuth from "@/hooks/useAuth";
 import {
   createAddressForUser,
   createUser,
+  getAddressById,
   getAddressesByUserId,
   getAllUsersExceptLogged,
   getStudiesByUserId,
@@ -19,6 +20,7 @@ const UsersProvider = ({ children }) => {
   const [studies, setStudies] = useState([]);
   const [usersLoading, setUsersLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState({});
+  const [selectedAddress, setSelectedAddress] = useState({});
   const [selectedUserLoading, setSelectedUserLoading] = useState(false);
 
   useEffect(() => {
@@ -100,6 +102,15 @@ const UsersProvider = ({ children }) => {
     }
   };
 
+  const fetchAddressById = async addressId => {
+    try {
+      const { data } = await getAddressById(addressId);
+      console.log("data:", data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const resetSelectedUser = useCallback(() => {
     setSelectedUser({});
     setAddresses([]);
@@ -117,15 +128,18 @@ const UsersProvider = ({ children }) => {
         users,
         usersLoading,
         selectedUser,
+        selectedAddress,
         selectedUserLoading,
         addresses,
         studies,
+        fetchUserById,
         addUser,
         editUser,
-        addAddressForUser,
-        fetchUserById,
         resetSelectedUser,
-        clearUsersData
+        clearUsersData,
+        setSelectedAddress,
+        addAddressForUser,
+        fetchAddressById
       }}
     >
       {children}

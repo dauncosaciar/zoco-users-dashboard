@@ -7,23 +7,29 @@ import useModal from "@/hooks/useModal";
 import { ADMIN } from "@/utils/constants";
 import EditUserModal from "./EditUserModal";
 import CreateAddressModal from "./CreateAddressModal";
+import EditAddressModal from "./EditAddressModal";
 
 export default function ProfileInformation() {
   const location = useLocation();
   const { user: loggedUser } = useAuth();
+
   const {
     selectedUser,
     selectedUserLoading,
     fetchUserById,
     resetSelectedUser,
     addresses,
-    studies
+    studies,
+    setSelectedAddress
   } = useUsers();
+
   const {
     openEditUserModal,
     setOpenEditUserModal,
     openCreateAddressModal,
-    setOpenCreateAddressModal
+    setOpenCreateAddressModal,
+    openEditAddressModal,
+    setOpenEditAddressModal
   } = useModal();
 
   const passedUserId = location.state?.userId;
@@ -35,6 +41,11 @@ export default function ProfileInformation() {
 
   const handleCreateAddressModal = () => {
     setOpenCreateAddressModal(!openCreateAddressModal);
+  };
+
+  const handleEditAddressModal = address => {
+    setSelectedAddress(address);
+    setOpenEditAddressModal(true);
   };
 
   useEffect(() => {
@@ -126,6 +137,7 @@ export default function ProfileInformation() {
                             <button
                               type="button"
                               className="profile-information__table-actions-edit"
+                              onClick={() => handleEditAddressModal(address)}
                             >
                               <Pencil />
                             </button>
@@ -221,6 +233,12 @@ export default function ProfileInformation() {
       <CreateAddressModal
         isOpen={openCreateAddressModal}
         onClose={handleCreateAddressModal}
+        title="Crear Dirección"
+      />
+
+      <EditAddressModal
+        isOpen={openEditAddressModal}
+        onClose={setOpenEditAddressModal}
         title="Crear Dirección"
       />
     </div>

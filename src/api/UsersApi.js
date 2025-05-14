@@ -131,6 +131,23 @@ export const getAddressesByUserId = async userId => {
   }
 };
 
+export const getAddressById = async addressId => {
+  try {
+    const url = `/addresses/${addressId}`;
+    const { data: user } = await axiosClient.get(url);
+
+    return user;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(
+        "Error al obtener la dirección del usuario. Inténtalo nuevamente más tarde"
+      );
+    } else {
+      throw new Error(error.message);
+    }
+  }
+};
+
 // Studies
 export const getStudiesByUserId = async userId => {
   try {
