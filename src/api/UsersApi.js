@@ -196,8 +196,41 @@ export const getStudiesByUserId = async userId => {
   } catch (error) {
     throw new Error(
       error.response
-        ? "Error al obtener las direcciones del usuario."
+        ? "Error al obtener los estudios del usuario."
         : error.message
     );
+  }
+};
+
+export const getStudyById = async studyId => {
+  try {
+    const url = `/studies/${studyId}`;
+    const { data: study } = await axiosClient.get(url);
+
+    return study;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(
+        "Error al obtener el estudio del usuario. Inténtalo nuevamente más tarde"
+      );
+    } else {
+      throw new Error(error.message);
+    }
+  }
+};
+
+export const updateStudy = async (formData, studyId) => {
+  try {
+    const url = `/studies/${studyId}`;
+    const { data } = await axiosClient.put(url, formData);
+    return data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(
+        "Error al actualizar el estudio. Inténtalo nuevamente más tarde"
+      );
+    } else {
+      throw new Error(error.message);
+    }
   }
 };

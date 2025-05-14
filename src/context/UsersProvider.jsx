@@ -8,8 +8,10 @@ import {
   getAddressesByUserId,
   getAllUsersExceptLogged,
   getStudiesByUserId,
+  getStudyById,
   getUserById,
   updateAddress,
+  updateStudy,
   updateUser
 } from "@/api/UsersApi";
 
@@ -145,6 +147,31 @@ const UsersProvider = ({ children }) => {
     }
   };
 
+  const fetchStudyById = async studyId => {
+    try {
+      const study = await getStudyById(studyId);
+      return study;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editStudy = async (formData, studyId) => {
+    try {
+      const updatedStudy = await updateStudy(formData, studyId);
+
+      setSelectedStudy(updatedStudy);
+
+      setStudies(previousState =>
+        previousState.map(std => (std.id === studyId ? updatedStudy : std))
+      );
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  };
+
   const resetSelectedUser = useCallback(() => {
     setSelectedUser({});
     setAddresses([]);
@@ -177,7 +204,9 @@ const UsersProvider = ({ children }) => {
         editAddress,
         fetchAddressById,
         addStudyForUser,
-        setSelectedStudy
+        setSelectedStudy,
+        editStudy,
+        fetchStudyById
       }}
     >
       {children}

@@ -14,6 +14,8 @@ import useUsers from "@/hooks/useUsers";
 import { toast } from "sonner";
 
 export default function EditStudyModal({ isOpen, onClose, title }) {
+  const { selectedStudy, fetchStudyById, editStudy } = useUsers();
+
   const initialValues = {
     degree: "",
     institution: ""
@@ -26,8 +28,23 @@ export default function EditStudyModal({ isOpen, onClose, title }) {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
+  useEffect(() => {
+    if (isOpen && selectedStudy?.id) {
+      fetchStudyById(selectedStudy.id);
+      reset(selectedStudy);
+    }
+  }, [isOpen, selectedStudy, fetchStudyById, reset]);
+
   const handleForm = async formData => {
-    console.log(formData);
+    const result = await editStudy(formData, selectedStudy.id);
+
+    if (!result.success) {
+      toast.error(result.error);
+      return;
+    }
+
+    toast.success("Estudio actualizado correctamente");
+    onClose(false);
   };
 
   return (
