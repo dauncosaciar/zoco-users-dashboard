@@ -8,6 +8,7 @@ import { ADMIN } from "@/utils/constants";
 import EditUserModal from "./EditUserModal";
 import CreateAddressModal from "./CreateAddressModal";
 import EditAddressModal from "./EditAddressModal";
+import CreateStudyModal from "./CreateStudyModal";
 
 export default function ProfileInformation() {
   const location = useLocation();
@@ -29,7 +30,9 @@ export default function ProfileInformation() {
     openCreateAddressModal,
     setOpenCreateAddressModal,
     openEditAddressModal,
-    setOpenEditAddressModal
+    setOpenEditAddressModal,
+    openCreateStudyModal,
+    setOpenCreateStudyModal
   } = useModal();
 
   const passedUserId = location.state?.userId;
@@ -46,6 +49,10 @@ export default function ProfileInformation() {
   const handleEditAddressModal = address => {
     setSelectedAddress(address);
     setOpenEditAddressModal(true);
+  };
+
+  const handleCreateStudyModal = () => {
+    setOpenCreateStudyModal(!openCreateStudyModal);
   };
 
   useEffect(() => {
@@ -164,7 +171,7 @@ export default function ProfileInformation() {
         <div className="profile-information__studies">
           <h3 className="profile-information__studies-heading">
             <span>Estudios</span>
-            <button type="button">
+            <button type="button" onClick={handleCreateStudyModal}>
               <Plus /> Agregar Estudio
             </button>
           </h3>
@@ -239,7 +246,13 @@ export default function ProfileInformation() {
       <EditAddressModal
         isOpen={openEditAddressModal}
         onClose={setOpenEditAddressModal}
-        title="Crear Dirección"
+        title="Editar Dirección"
+      />
+
+      <CreateStudyModal
+        isOpen={openCreateStudyModal}
+        onClose={handleCreateStudyModal}
+        title="Crear Estudio"
       />
     </div>
   );
