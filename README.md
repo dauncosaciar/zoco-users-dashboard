@@ -2,6 +2,15 @@
 
 **URL de App en línea:** [https://zoco-dashboard.netlify.app/](https://zoco-dashboard.netlify.app/)
 
+### Tecnologías utilizadas
+
+Se utilizaron las siguientes tecnologías:
+
+- **Framework o librería de Front-End:** React JS, versión 19.1.0.
+- **Gestor de paquetes:** NPM.
+- **Herramienta de creación del proyecto de React:** Vite v6.3.5.
+- **Node JS instalado en máquina local:** v22.15.0.
+
 ### Pasos de instalación y ejecución del Proyecto en máquina local
 
 1. Asegúrate de clonar en tu PC el repositorio de GitHub de nombre `zoco-users-dashboard`.
