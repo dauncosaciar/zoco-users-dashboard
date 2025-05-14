@@ -14,7 +14,8 @@ import useUsers from "@/hooks/useUsers";
 import { toast } from "sonner";
 
 export default function CreateAddressModal({ isOpen, onClose, title }) {
-  const { addUser } = useUsers();
+  const { selectedUser, addAddressForUser } = useUsers();
+  const selectedUserId = selectedUser.id;
 
   const initialValues = {
     street: "",
@@ -30,25 +31,15 @@ export default function CreateAddressModal({ isOpen, onClose, title }) {
   } = useForm({ defaultValues: initialValues });
 
   const handleForm = async formData => {
-    // const name = formData.name;
-    // const lastName = formData.lastName;
-    // const email = formData.email;
+    const result = await addAddressForUser(formData, selectedUserId);
 
-    // const result = await addUser({
-    //   name,
-    //   lastName,
-    //   email
-    // });
+    if (!result.success) {
+      toast.error(result.error);
+      return;
+    }
 
-    // if (!result.success) {
-    //   toast.error(result.error);
-    //   return;
-    // }
-
-    // toast.success("Dirección creada correctamente");
-    // onClose();
-
-    console.log("handleForm...");
+    toast.success("Dirección creada correctamente");
+    onClose();
   };
 
   return (
