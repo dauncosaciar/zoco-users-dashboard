@@ -88,6 +88,9 @@ const UsersProvider = ({ children }) => {
     try {
       const updatedUser = await updateUser(formData, userId);
       setSelectedUser(updatedUser);
+      setUsers(previousState =>
+        previousState.map(user => (user.id === userId ? updatedUser : user))
+      );
       return { success: true };
     } catch (error) {
       return { success: false, error: error.message };
